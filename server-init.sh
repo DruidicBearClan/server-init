@@ -30,7 +30,7 @@ apt install ntp
 cat ntp.conf > /etc/ntp.conf
 
 #Restart NTP Service
-service restart ntp
+systemctl restart ntp
 
 #Check timesync queue
 ntpq -p
