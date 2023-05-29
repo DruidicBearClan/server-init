@@ -35,4 +35,16 @@ systemctl restart ntp
 #Check timesync queue
 ntpq -p
 
+#Remove Snaps and snapd package
+snap remove lxd
+snap remove core20
+snap remove snapd
 
+apt remove snapd -y
+
+#Enable firewall and allow ssh
+
+ufw allow ssh
+ufw enable
+ufw reload
+ufw status numbered
