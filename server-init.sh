@@ -20,7 +20,7 @@ update-locale LC_IDENTIFICATION=nl_NL.UTF-8
 #Set Timezone
 timedatectl set-timezone Europe/Amsterdam
 
-#Disable local timesync daemon
+#Disable local systemd timesyncd service
 timedatectl set-ntp off
 
 #Install NTP
