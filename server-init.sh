@@ -1,4 +1,4 @@
-#Generate default US/NL locales  
+#Generate default US/NL locales
 locale-gen en_US.UTF-8
 locale-gen nl_NL.UTF-8
 
@@ -48,3 +48,11 @@ ufw allow ssh
 ufw enable
 ufw reload
 ufw status numbered
+
+#Add public key thumbprint to authorized keys
+echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsxMWaQgyUDfRKch5bFnOQsuoGYLOHPfeGt1veyMChc ll@ouroboros' >> /home/ll/.ssh/authorized_keys
+
+#Enable pub key only SSH authentication and restart SSH
+sed 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
+sed 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+service ssh restart
