@@ -17,6 +17,10 @@ update-locale LC_TELEPHONE=nl_NL.UTF-8
 update-locale LC_MEASUREMENT=nl_NL.UTF-8
 update-locale LC_IDENTIFICATION=nl_NL.UTF-8
 
+#Update and upgrade system, remove not needed packages
+apt update && apt upgrade -y
+apt autoremove -y
+
 #Set Timezone
 timedatectl set-timezone Europe/Amsterdam
 
@@ -45,7 +49,7 @@ apt remove snapd -y
 #Enable firewall and allow ssh
 
 ufw allow ssh
-ufw enable
+ufw --force enable
 ufw reload
 ufw status numbered
 
