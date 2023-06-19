@@ -1,7 +1,7 @@
-#~/bin/bash
+#!/bin/bash
 
 #Require root permissions
-if [ "$EUID" -ne 0 ];
+if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
