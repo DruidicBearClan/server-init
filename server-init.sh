@@ -51,7 +51,7 @@ snap remove snapd
 apt remove snapd -y
 
 #remove old packages
-apt autoremove
+apt autoremove -y
 
 #Enable firewall and allow ssh
 
