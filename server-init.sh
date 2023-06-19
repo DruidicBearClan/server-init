@@ -1,3 +1,6 @@
+#~/bin/bash
+
+
 #Generate default US/NL locales
 locale-gen en_US.UTF-8
 locale-gen nl_NL.UTF-8
