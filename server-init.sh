@@ -1,5 +1,10 @@
 #~/bin/bash
 
+#Require root permissions
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
 
 #Generate default US/NL locales
 locale-gen en_US.UTF-8
