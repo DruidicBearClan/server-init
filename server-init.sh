@@ -54,7 +54,7 @@ ufw reload
 ufw status numbered
 
 #Add public key thumbprint to authorized keys
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsxMWaQgyUDfRKch5bFnOQsuoGYLOHPfeGt1veyMChc ll@ouroboros' >> /home/$USER/.ssh/authorized_keys
+echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsxMWaQgyUDfRKch5bFnOQsuoGYLOHPfeGt1veyMChc ll@ouroboros' > /home/$USER/.ssh/authorized_keys
 
 #Enable pub key only SSH authentication and restart SSH
 sed 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
