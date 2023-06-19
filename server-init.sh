@@ -68,3 +68,12 @@ echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsxMWaQgyUDfRKch5bFnOQsuoGYLOHPfeGt1v
 sed 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
 sed 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 service ssh restart
+
+#Write out the current crontab into a file
+crontab -l > mycron
+#echo a new cronjob into cron file for system updates. Scheduled weekly, on Sunday night 03:00 AM.
+echo "0 3 * * SUN apt update && apt upgrade && shutdown -h now" >> mycron
+#install the new cron file as cronjob
+crontab mycron
+#remove temp cron file
+rm mycron
