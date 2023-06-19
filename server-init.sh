@@ -76,7 +76,7 @@ crontab -u ll -l > mycron
 
 echo installing a new cronjob to ll users crontab from this file
 #echo a new cronjob into cron file for system updates. Scheduled weekly, on Sunday night 03:00 AM.
-echo "0 3 * * SUN apt update && apt upgrade && shutdown -h now" >> mycron
+echo "0 3 * * SUN apt update && apt upgrade && shutdown -h now" > mycron
 #install the new cron file as cronjob
 crontab -u ll mycron
 #remove temp cron file
