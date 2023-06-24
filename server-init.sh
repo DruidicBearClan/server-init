@@ -32,7 +32,7 @@ timedatectl set-timezone Europe/Amsterdam
 timedatectl set-ntp off
 
 #Install NTP
-apt install ntp
+apt install ntp -y
 
 #Replace contents of /et/ntp.conf
 cat ntp.conf > /etc/ntp.conf
@@ -70,14 +70,14 @@ service ssh restart
 
 #Write out the current crontab into a file
 echo creating temporary file mycron
-crontab -u ll -l > mycron
+crontab -u $USER -l > mycron
 
 #echo a new cronjob into cron file for system updates. Scheduled weekly, on Sunday night 03:00 AM.
 echo installing a new cronjob to ll users crontab from this file
 echo "0 3 * * SUN apt update && apt upgrade -y && apt autoremove -y && reboot-h now" > mycron
 
 #install the new cron file as cronjob
-crontab -u ll mycron
+crontab -u $USER mycron
 
 #remove temp cron file
 echo removed temporary file mycron, new cronjob has been configured for updates on Sunday night 03:00
