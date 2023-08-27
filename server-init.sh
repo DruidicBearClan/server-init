@@ -31,11 +31,14 @@ timedatectl set-timezone Europe/Amsterdam
 #Disable local systemd timesyncd service
 timedatectl set-ntp off
 
-#Install NTP
-apt install ntp -y
+#Install NTP and SMTP services
+apt install ntp apt install snmpd snmp libsnmp-dev -y
 
-#Replace contents of /et/ntp.conf
+#Replace contents of /etc/ntp.conf
 cat ntp.conf > /etc/ntp.conf
+
+#Replace contents of /etc/snmp/snmpd.conf
+cat snmpd.conf > /etc/snmp/snmpd.conf
 
 #Restart NTP Service
 systemctl restart ntp
@@ -53,32 +56,5 @@ apt remove snapd -y
 #remove old packages
 apt autoremove -y
 
-#Enable firewall and allow ssh
-
-ufw allow ssh
-ufw --force enable
-ufw reload
-ufw status numbered
-
 #Add public key thumbprint to authorized keys
 echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK1w0/MCpeRujflcNsuR6kWLVtNUjPFpjpE1po1wxCp ll@ouroboros' > /home/ll/.ssh/authorized_keys
-
-#Enable pub key only SSH authentication and restart SSH
-sed 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
-sed 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
-service ssh restart
-
-#Write out the current crontab into a file
-echo creating temporary file mycron
-crontab -u ll -l > mycron
-
-#echo a new cronjob into cron file for system updates. Scheduled weekly, on Sunday night 03:00 AM.
-echo installing a new cronjob to ll users crontab from this file
-echo "0 3 * * SUN apt update && apt upgrade -y && apt autoremove -y && reboot-h now" > mycron
-
-#install the new cron file as cronjob
-crontab -u ll mycron
-
-#remove temp cron file
-echo removed temporary file mycron, new cronjob has been configured for updates on Sunday night 03:00
-rm mycron
