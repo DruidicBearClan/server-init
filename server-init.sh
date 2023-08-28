@@ -59,10 +59,10 @@ apt autoremove -y
 #Add public key thumbprint to authorized keys
 echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOK1w0/MCpeRujflcNsuR6kWLVtNUjPFpjpE1po1wxCp ll@ouroboros' > /home/ll/.ssh/authorized_keys
 
-#write out current crontab
+#write out current crontab to temp file
 crontab -l > mytempcron
 
-#echo new cronjobs for weekly updates into temp cron file
+#echo required cronjobs into temp cron file (for maintenance and libreNMS)
 echo "50 19 * * 7 /usr/bin/apt update -q -y >> /var/log/apt/automaticupdates.log" >> mytempcron
 echo "0 20 * * 7 /usr/bin/apt upgrade -q -y >> /var/log/apt/automaticupdates.log" >> mytempcron
 echo "30 20 * * 7 /sbin/shutdown -r now" >> mytempcron
