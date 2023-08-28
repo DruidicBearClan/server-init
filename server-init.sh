@@ -66,6 +66,7 @@ crontab -l > mytempcron
 echo "50 19 * * 7 /usr/bin/apt update -q -y >> /var/log/apt/automaticupdates.log" >> mytempcron
 echo "0 20 * * 7 /usr/bin/apt upgrade -q -y >> /var/log/apt/automaticupdates.log" >> mytempcron
 echo "30 20 * * 7 /sbin/shutdown -r now" >> mytempcron
+echo "@reboot chmod 444 /sys/devices/virtual/dmi/id/product_serial" >> mytempcron
 
 #install new cronjobs and remove temp cron file
 crontab mytempcron
