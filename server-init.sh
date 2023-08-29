@@ -70,6 +70,10 @@ echo "@reboot chmod 444 /sys/devices/virtual/dmi/id/product_serial" >> mytempcro
 
 crontab -l
 
+#Copy the /usr/bin/distro for libreNMS
+curl -o /usr/bin/distro https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro
+chmod +x /usr/bin/distro
+
 #install new cronjobs and remove temp cron file
 crontab mytempcron
 rm mytempcron
