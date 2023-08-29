@@ -34,14 +34,14 @@ timedatectl set-ntp off
 #Install NTP and SMTP services
 apt install ntp snmpd snmp libsnmp-dev -y
 
-#restart snmp daemon
-service snmpd restart
-
 #Replace contents of /etc/ntp.conf
 cat ntp.conf > /etc/ntp.conf
 
 #Replace contents of /etc/snmp/snmpd.conf
 cat snmpd.conf > /etc/snmp/snmpd.conf
+
+#restart snmp daemon
+service snmpd restart
 
 #Restart NTP Service
 systemctl restart ntp
