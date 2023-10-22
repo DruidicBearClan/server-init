@@ -32,7 +32,7 @@ timedatectl set-timezone Europe/Amsterdam
 timedatectl set-ntp off
 
 #Install NTP and SMTP services
-apt install ntp snmpd snmp libsnmp-dev -y
+apt install net-tools dnsutils ldns-utils ntp snmpd snmp libsnmp-dev -y
 
 #Replace contents of /etc/ntp.conf
 cat ntp.conf > /etc/ntp.conf
