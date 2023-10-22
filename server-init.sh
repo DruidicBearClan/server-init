@@ -31,7 +31,7 @@ timedatectl set-timezone Europe/Amsterdam
 #Disable local systemd timesyncd service
 timedatectl set-ntp off
 
-#Install NTP and SMTP services
+#Install some packages
 apt install net-tools dnsutils ldns-utils ntp snmpd snmp libsnmp-dev -y
 
 #Replace contents of /etc/ntp.conf
