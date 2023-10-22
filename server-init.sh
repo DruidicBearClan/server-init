@@ -68,14 +68,13 @@ echo "0 20 * * 7 /usr/bin/apt upgrade -q -y >> /var/log/apt/automaticupdates.log
 echo "30 20 * * 7 /sbin/shutdown -r now" >> mytempcron
 echo "@reboot chmod 444 /sys/devices/virtual/dmi/id/product_serial" >> mytempcron
 
+#install new cronjobs and remove temp cron file, then print out existing cronjobs
+crontab mytempcron
+rm mytempcron
 crontab -l
 
 #Copy the /usr/bin/distro for libreNMS
 curl -o /usr/bin/distro https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro
 chmod +x /usr/bin/distro
 
-#install new cronjobs and remove temp cron file
-crontab mytempcron
-rm mytempcron
-
-echo system is now setup for weekly updates
+echo The system is now setup for weekly updates and LibreNMS monitoring
